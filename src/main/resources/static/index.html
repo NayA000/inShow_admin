@@ -39,9 +39,11 @@
 						</ul>
 						<ul>被举报数：{{ item.reportCounts }}
 						</ul>
+						<input name="userCheck" type="checkbox" v-bind:value="item.id">
 					</div>
 				</div>
 				<button onclick="getUserList()">获取user数据</button>
+				<button onclick="getCheck(0,'userCheck')">xxxxx</button>
 			</div>
 		</div>
 		<div id="bgmdiv" hidden=true>
@@ -49,22 +51,26 @@
 				<div v-for="item in bitems">
 					<!-- {{ item }} -->
 					<div>
+					    <audio v-bind:src="'http://192.168.1.7:8081'+item.path"></audio>
 						<ul>bgm名：{{ item.name }}
 						</ul>
 						<ul>bgmid：{{ item.id }}
 						</ul>
 						<ul>作者名称：{{ item.author }}
 						</ul>
+						<input name="bgmCheck" type="checkbox" v-bind:value="item.id">
 						<ul>-----------------------------
 						</ul>
 					</div>
 				</div>
 				<button onclick="getBgmList()">获取bgm数据</button>
 				<button onclick="">上传bgm</button>
+				<button onclick="getCheck(1,'bgmCheck')">xxxxx</button>
 			</div>
 		</div>
 		<div id="topicdiv" hidden=true>
 			<div id="topiclist">
+			    <input id="topicKey" value="请输入关键词" >
 				<div v-for="item in titems">
 					<!-- {{ item }} -->
 					<div>
@@ -76,11 +82,14 @@
 						</ul>
 						<ul>发布时间：{{ item.createTime }}
 						</ul>
+						<input name="topicCheck" type="checkbox" v-bind:value="item.id">
 						<ul>-----------------------------
 						</ul>
 					</div>
 				</div>
 				<button onclick="getTopicList()">获取话题数据</button>
+				<button onclick="getCheck(2,'topicCheck')">xxxxx</button>
+				<button onclick="topicDelect()">删除话题数据</button>
 			</div>
 		</div>
 		<div id="videodiv" hidden=true>
@@ -101,11 +110,13 @@
 						</ul>
 						<ul>点赞数：{{ item.clickCounts }}
 						</ul>
+						<input name="videoCheck" type="checkbox" v-bind:value="item.id">
 						<ul>-----------------------------
 						</ul>
 					</div>
 				</div>
 				<button onclick="getVideoList()">获取话题数据</button>
+				<button onclick="getCheck(3,'videoCheck')">xxxxx</button>
 			</div>
 		</div>
 		<div id="barragediv" hidden=true>
@@ -119,11 +130,13 @@
 						</ul>
 						<ul>举报内容：{{ item.comment }}
                         </ul>
+                        <input name="barrageCheck" type="checkbox" v-bind:value="item.id">
 						<ul>-----------------------------
 						</ul>
 					</div>
 				</div>
 				<button onclick="getBarrageList()">获取话题数据</button>
+				<button onclick="getCheck(4,'barrageCheck')">xxxxx</button>
 			</div>
 		</div>
 	</div>
