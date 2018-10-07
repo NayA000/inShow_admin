@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inShowAdmin.mapper.UsersMapper">
+	<resultMap id="BaseResultMap"
+		type="com.inShowAdmin.pojo.Users">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="username" property="username"
+			jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="INTEGER" />
+		<result column="avatarUrl" property="avatarurl"
+			jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province"
+			jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname"
+			jdbcType="VARCHAR" />
+		<result column="fans_counts" property="fansCounts"
+			jdbcType="INTEGER" />
+		<result column="follow_counts" property="followCounts"
+			jdbcType="INTEGER" />
+		<result column="receive_like_counts"
+			property="receiveLikeCounts" jdbcType="INTEGER" />
+		<result column="report_counts" property="reportCounts"
+			jdbcType="INTEGER" />
+	</resultMap>
+</mapper>

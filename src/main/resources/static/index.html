@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<body>
+	<div>
+		<div>
+			<button onclick="showDiv(0)">用户管理</button>
+			<button onclick="showDiv(1)">音乐管理</button>
+			<button onclick="showDiv(2)">话题管理</button>
+			<button onclick="showDiv(3)">视频管理</button>
+			<button onclick="showDiv(4)">举报管理</button>
+		</div>
+		<div id="userdiv" hidden=false>
+			<!-- 显示用户信息的div -->
+			<div id="userlist">
+				<div v-for="item in uitems">
+					<!-- {{ item }} -->
+					<div>
+						<img v-bind:src="item.avatarurl">
+					</div>
+					<div>
+						<ul>用户名：{{ item.username }}
+						</ul>
+						<ul>用户id：{{ item.id }}
+						</ul>
+						<ul>国家：{{ item.country }}
+						</ul>
+						<ul>省份：{{ item.province }}
+						</ul>
+						<ul>城市：{{ item.city }}
+						</ul>
+						<ul>粉丝数：{{ item.fansCounts }}
+						</ul>
+						<ul>被举报数：{{ item.reportCounts }}
+						</ul>
+					</div>
+				</div>
+				<button onclick="getUserList()">获取user数据</button>
+			</div>
+		</div>
+		<div id="bgmdiv" hidden=true>
+			<div id="bgmlist">
+				<div v-for="item in bitems">
+					<!-- {{ item }} -->
+					<div>
+						<ul>bgm名：{{ item.name }}
+						</ul>
+						<ul>bgmid：{{ item.id }}
+						</ul>
+						<ul>作者名称：{{ item.author }}
+						</ul>
+						<ul>-----------------------------
+						</ul>
+					</div>
+				</div>
+				<button onclick="getBgmList()">获取bgm数据</button>
+				<button onclick="">上传bgm</button>
+			</div>
+		</div>
+		<div id="topicdiv" hidden=true>
+			<div id="topiclist">
+				<div v-for="item in titems">
+					<!-- {{ item }} -->
+					<div>
+						<ul>话题名：{{ item.topicName }}
+						</ul>
+						<ul>话题描述：{{ item.topicDesc }}
+						</ul>
+						<ul>参与人数：{{ item.participationCounts }}
+						</ul>
+						<ul>发布时间：{{ item.createTime }}
+						</ul>
+						<ul>-----------------------------
+						</ul>
+					</div>
+				</div>
+				<button onclick="getTopicList()">获取话题数据</button>
+			</div>
+		</div>
+		<div id="videodiv" hidden=true>
+			<div id="videolist">
+				<div v-for="item in vitems">
+					<!-- {{ item }} -->
+					<div>
+					    <video v-bind:src="'http://192.168.1.7:8081'+item.videoPath"></video>
+						<ul>视频地址：{{ item.videoPath }}
+						</ul>
+						<ul>视频描述：{{ item.videoDesc }}
+						</ul>
+						<ul>发布者id：{{ item.userId }}
+						</ul>
+						<ul>发布时间：{{ item.createTime }}
+						</ul>
+						<ul>收藏数：{{ item.likeCounts }}
+						</ul>
+						<ul>点赞数：{{ item.clickCounts }}
+						</ul>
+						<ul>-----------------------------
+						</ul>
+					</div>
+				</div>
+				<button onclick="getVideoList()">获取话题数据</button>
+			</div>
+		</div>
+		<div id="barragediv" hidden=true>
+			<div id="barragelist">
+				<div v-for="item in baitems">
+					<!-- {{ item }} -->
+					<div>
+						<ul>被举报视频id：{{ item.videoId }}
+						</ul>
+						<ul>发布时间：{{ item.createTime }}
+						</ul>
+						<ul>举报内容：{{ item.comment }}
+                        </ul>
+						<ul>-----------------------------
+						</ul>
+					</div>
+				</div>
+				<button onclick="getBarrageList()">获取话题数据</button>
+			</div>
+		</div>
+	</div>
+	<script src="/js/index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
