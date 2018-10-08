@@ -34,7 +34,7 @@ var list1 = new Vue({
 function getlist(){
 	console.log("点了一下");
 	$.ajax({
-		url : 'http://192.168.1.5:8081/bgm/getAll?page=0',
+		url : 'http://localhost:8081/bgm/getAll?page=0',
 		type : 'GET',
 		//data: "page=0",
 		success: function(msg){
@@ -53,7 +53,7 @@ function aaa() {
 	console.log("----------------");
 	if (flag === 0) {
 		$.ajax({
-			url : 'http://192.168.1.5:8081/admin/login',
+			url : 'http://locahost:8081/admin/login',
 			type : 'GET',
 			success : function(data) {
 				if (data) {
@@ -65,7 +65,7 @@ function aaa() {
 		});
 	} else {
 		$.ajax({
-			url : 'http://192.168.1.5:8081/admin/login',
+			url : 'http://locahost:8081/admin/login',
 			type : 'GET',
 			success : function(data) {
 				if (data) {

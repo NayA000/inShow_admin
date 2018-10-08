@@ -1,6 +1,7 @@
 package com.inShowAdmin.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrServerException;
@@ -42,14 +43,14 @@ public class topicController {
 						dataType="int", paramType="query")
 	})
 	@GetMapping("/search")
-	public JSONResult Vsearch(String key,int page) throws SolrServerException, IOException {
+	public JSONResult Tsearch(String key,int page) throws SolrServerException, IOException, ParseException {
 		if(key==null) key="";
 		List<Topics> tlist = tservice.findTopicByKey(key, page);
 		return JSONResult.ok(tlist);
 	}
 	@ApiOperation(value="删除话题", notes="删除话题的接口")
 	@ApiImplicitParam(name="tid", value="话题id", required=true, 
-						dataType="String[]", paramType="query")
+						dataType="String", paramType="query")
 	@GetMapping("/delect")
 	public JSONResult del(String[] tid) {
 		if(tservice.delectTopic(tid))

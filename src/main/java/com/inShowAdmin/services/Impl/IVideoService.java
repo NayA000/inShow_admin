@@ -1,6 +1,7 @@
 package com.inShowAdmin.services.Impl;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class IVideoService implements vedioService {
 	}
 
 	@Override
-	public List<Videos> findVideoByKey(String key , int page) {
+	public List<Videos> findVideoByKey(String key , int page) throws ParseException {
 		List<Videos> vl = new ArrayList<>();
 		try {
 			vl = new solrSearch().selectVideoByKey(key, page);

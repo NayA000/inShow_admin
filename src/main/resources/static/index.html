@@ -70,7 +70,8 @@
 		</div>
 		<div id="topicdiv" hidden=true>
 			<div id="topiclist">
-			    <input id="topicKey" value="请输入关键词" >
+			    <input type="text" id="topicKey"  name="topicKey">
+			    <button onclick="topicSearch(1)">搜索</button>
 				<div v-for="item in titems">
 					<!-- {{ item }} -->
 					<div>
@@ -94,6 +95,8 @@
 		</div>
 		<div id="videodiv" hidden=true>
 			<div id="videolist">
+		      	<input type="text" id="videoKey"  name="videoKey">
+                <button onclick="videoSearch(1)">搜索</button>
 				<div v-for="item in vitems">
 					<!-- {{ item }} -->
 					<div>
@@ -115,7 +118,7 @@
 						</ul>
 					</div>
 				</div>
-				<button onclick="getVideoList()">获取话题数据</button>
+				<button onclick="getVideoList()">获取视频数据</button>
 				<button onclick="getCheck(3,'videoCheck')">xxxxx</button>
 			</div>
 		</div>

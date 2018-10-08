@@ -2,6 +2,8 @@ package com.inShowAdmin.services.Impl;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import com.inShowAdmin.pojo.Videos;
 
 @Service
 public class solrSearch {
-	String solrUrl = "http://192.168.1.5:8888/solr/inShow-admin";
+	String solrUrl = "http://192.168.1.6:8888/solr/inShow-admin";
 	HttpSolrClient solrClient = null;
 
 	public solrSearch() {
@@ -139,13 +141,15 @@ public class solrSearch {
 	 * @return
 	 * @throws SolrServerException
 	 * @throws IOException
+	 * @throws ParseException 
 	 */
-	public List<Topics> selectTopicByKey(String key,int page) throws SolrServerException, IOException{
+	public List<Topics> selectTopicByKey(String key,int page) throws SolrServerException, IOException, ParseException{
 		if(key==null)
 			key = "";
 		List<Topics> tlist = new ArrayList<Topics>();
 		SolrDocumentList docs = getDocs("t_topic_name:*" + key + "*", page, 10);
 		for (SolrDocument doc : docs) {
+			System.out.println("---------------"+doc.getFieldValue("t_create_time").toString());
 			Topics topic = new Topics();
 			topic.setId(doc.getFieldValue("id").toString());
 			topic.setUserId(doc.getFieldValue("t_user_id").toString());
@@ -154,7 +158,11 @@ public class solrSearch {
 			topic.setCoverPath(doc.getFieldValue("t_cover_path").toString());
 			topic.setParticipationCounts(Long.valueOf(doc.getFieldValue("t_participation_counts").toString()));
 			topic.setStatus(Integer.valueOf(doc.getFieldValue("t_status").toString()));
-			topic.setCreateTime(Date.valueOf(doc.getFieldValue("t_create_time").toString()));
+			//topic.setCreateTime(Date.valueOf(String.valueOf(doc.getFieldValue("t_create_time").toString())));
+			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			//topic.setCreateTime(Date.valueOf(doc.getFieldValue("t_create_time").toString()));
+			topic.setCreateTime(new Date(simpleDateFormat.parse(doc.getFieldValue("t_create_time").toString()).getTime()));
+			//Date date=simpleDateFormat.parse(strDate);
 			tlist.add(topic);
 		}
 		return tlist;
@@ -166,12 +174,14 @@ public class solrSearch {
 	 * @return
 	 * @throws SolrServerException
 	 * @throws IOException
+	 * @throws ParseException 
 	 */
-	public List<Videos> selectVideoByKey(String key,int page) throws SolrServerException, IOException{
+	public List<Videos> selectVideoByKey(String key,int page) throws SolrServerException, IOException, ParseException{
 		if(key==null)
 			key = "";
 		List<Videos> vlist = new ArrayList<Videos>();
-		SolrDocumentList docs = getDocs("b_name:*" + key + "*", page, 10);
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SolrDocumentList docs = getDocs("v_video_desc:*" + key + "*", page, 10);
 		for (SolrDocument doc : docs) {
 			Videos v = new Videos();
 			
@@ -186,7 +196,8 @@ public class solrSearch {
 			v.setCoverPath(doc.getFieldValue("v_cover_path").toString());
 			v.setLikeCounts(Long.valueOf(doc.getFieldValue("v_like_counts").toString()));
 			v.setStatus(Integer.valueOf(doc.getFieldValue("v_status").toString()));
-			v.setCreateTime(Date.valueOf(doc.getFieldValue("v_create_time").toString()));
+			//v.setCreateTime(Date.valueOf(doc.getFieldValue("v_create_time").toString()));
+			v.setCreateTime(new Date(simpleDateFormat.parse(doc.getFieldValue("v_create_time").toString()).getTime()));
 			v.setClickCounts(Long.valueOf(doc.getFieldValue("v_click_counts").toString()));
 			v.setTopicId(doc.getFieldValue("v_topic_id").toString());
 			v.setBgmPosition(Integer.valueOf(doc.getFieldValue("v_bgm_position").toString()));

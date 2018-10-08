@@ -1,6 +1,7 @@
 package com.inShowAdmin.services.Impl;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ITopicService implements topicService {
 	}
 
 	@Override
-	public List<Topics> findTopicByKey(String key,int page) {
+	public List<Topics> findTopicByKey(String key,int page) throws ParseException {
 		List<Topics> tl = new ArrayList<>();
 		try {
 			tl = new solrSearch().selectTopicByKey(key, page);

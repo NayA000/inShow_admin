@@ -1,5 +1,6 @@
 package com.inShowAdmin.services;
 
+import java.text.ParseException;
 import java.util.List;
 import com.inShowAdmin.pojo.Videos;
 
@@ -20,8 +21,9 @@ public interface vedioService {
 	 * 根据关键字查找视频
 	 * @param key
 	 * @return
+	 * @throws ParseException 
 	 */
-	public List<Videos> findVideoByKey(String key, int page);
+	public List<Videos> findVideoByKey(String key, int page) throws ParseException;
 	/**
 	 * 封视频
 	 * @param vid

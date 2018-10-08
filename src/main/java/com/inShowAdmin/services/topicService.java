@@ -1,5 +1,6 @@
 package com.inShowAdmin.services;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.inShowAdmin.pojo.Topics;
@@ -21,7 +22,8 @@ public interface topicService {
 	 * 根据关键字查找话题
 	 * @param key
 	 * @return
+	 * @throws ParseException 
 	 */
-	public List<Topics> findTopicByKey(String key,int page);
+	public List<Topics> findTopicByKey(String key,int page) throws ParseException;
 
 }

@@ -147,11 +147,9 @@ function getCheck(flag,name) {
 function topicDelect(){
 	getCheck(2,'topicCheck');
 	$.ajax({
-		url : url + '/topic/delect' ,
+		//url : url + '/topic/delect' ,
+		url : url + '/topic/delect?tid='+ check[2],
 		type : 'GET',
-		data: {
-			tid: check[2],
-		}
 		success : function(msg) {
 			console.log(msg);
 			if(topicPage>0)
@@ -161,25 +159,66 @@ function topicDelect(){
 	});
 }
 var topicSearchPage = 0;
-function topicSearch(){
-	var key = $("#topicKey").attr("value");
+
+function topicSearch(newSearch){// 搜索案件使用topicSearch(1) 下一页使用topicSearch(2) 上一页使用topicSearch(0)
+	console.log("----------");
+	if(newSearch===1) topicSearchPage=0;
+	var key = document.getElementsByName("topicKey")[0].value;
+	//console.log("----------"+key+"+++"+key2+"-+-+-+-+"+key3);
 	$.ajax({
 		url : url + '/topic/search' ,
 		type : 'GET',
 		data: {
 			key: key,
 			page: topicSearchPage
-		}
+		},
 		success : function(msg) {
 			console.log(msg);
 			tlist.$data.titems = msg.data;
 		}
 	});
+	if(newSearch===0&&topicSearchPage>0) topicSearchPage-=1;
+	if(newSearch===2) topicSearchPage+=1;
 }
 
+//-------------33333-----------------------------------------------------------
+//video  ==>    delect   chack    seal
+function videoDelect(){
+	getCheck(3,'videoCheck');
+	$.ajax({
+		//url : url + '/topic/delect' ,
+		url : url + '/video/delect?tid='+ check[3],
+		type : 'GET',
+		success : function(msg) {
+			console.log(msg);
+			if(topicPage>0)
+				topicPage-=1;
+			getVideoList();
+		}
+	});
+}
+var videoSearchPage = 0;
 
-
-
+function videoSearch(newSearch){// 搜索案件使用videoSearch(1) 下一页使用videoSearch(2) 上一页使用videoSearch(0)
+	console.log("----------");
+	if(newSearch===1) videoSearchPage=0;
+	var key = document.getElementsByName("videoKey")[0].value;
+	console.log("----------"+key);
+	$.ajax({
+		url : url + '/video/search' ,
+		type : 'GET',
+		data: {
+			key: key,
+			page: videoSearchPage
+		},
+		success : function(msg) {
+			console.log(msg);
+			vlist.$data.vitems = msg.data;
+		}
+	});
+	if(newSearch===0&&videoSearchPage>0) videoSearchPage-=1;
+	if(newSearch===2) videoSearchPage+=1;
+}
 
 
 

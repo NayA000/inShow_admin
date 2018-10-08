@@ -60,7 +60,7 @@ public class bgmController {
 	}
 	@ApiOperation(value="删除bgm", notes="删除bgm的接口")
 	@ApiImplicitParam(name="bid", value="bgm_id", required=true, 
-						dataType="String[]", paramType="query")
+						dataType="String", paramType="query")
 	@GetMapping("/delect")
 	public JSONResult del(String[] bid) {
 		if(bservice.delectBgm(bid))

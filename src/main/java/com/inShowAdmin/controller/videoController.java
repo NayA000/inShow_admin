@@ -2,6 +2,7 @@ package com.inShowAdmin.controller;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrServerException;
@@ -45,7 +46,7 @@ public class videoController {
 						dataType="int", paramType="query")
 	})
 	@GetMapping("/search")
-	public JSONResult Vsearch(String key,int page) throws SolrServerException, IOException {
+	public JSONResult Vsearch(String key,int page) throws SolrServerException, IOException, ParseException {
 		if(key==null) key="";
 		List<Videos> vlist = vservice.findVideoByKey(key, page);
 		return JSONResult.ok(vlist);
