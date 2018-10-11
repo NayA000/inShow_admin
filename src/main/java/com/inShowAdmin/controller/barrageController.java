@@ -33,7 +33,7 @@ public class barrageController {
 	}
 	
 	@ApiOperation(value="删除举报", notes="删除举报的接口")
-	@ApiImplicitParam(name="tid", value="话题id", required=true, 
+	@ApiImplicitParam(name="bid", value="话题id", required=true, 
 						dataType="String", paramType="query")
 	@GetMapping("/delect")
 	public JSONResult del(String[] bid) {

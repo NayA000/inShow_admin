@@ -14,7 +14,7 @@
 			<button onclick="showDiv(1)">音乐管理</button>
 			<button onclick="showDiv(2)">话题管理</button>
 			<button onclick="showDiv(3)">视频管理</button>
-			<button onclick="showDiv(4)">举报管理</button>
+			<button onclick="showDiv(4)">弹幕管理</button>
 		</div>
 		<div id="userdiv" hidden=false>
 			<!-- 显示用户信息的div -->
@@ -48,10 +48,12 @@
 		</div>
 		<div id="bgmdiv" hidden=true>
 			<div id="bgmlist">
+				<input type="text" id="bgmKey" name="bgmKey">
+				<button onclick="bgmSearch(1)">搜索</button>
 				<div v-for="item in bitems">
 					<!-- {{ item }} -->
 					<div>
-					    <audio v-bind:src="'http://192.168.1.7:8081'+item.path"></audio>
+						<!-- <audio v-bind:src="'http://192.168.1.7:8081'+item.path"></audio> -->
 						<ul>bgm名：{{ item.name }}
 						</ul>
 						<ul>bgmid：{{ item.id }}
@@ -64,14 +66,15 @@
 					</div>
 				</div>
 				<button onclick="getBgmList()">获取bgm数据</button>
-				<button onclick="">上传bgm</button>
+				<button onclick="joinBgmUpload()">上传bgm</button>
 				<button onclick="getCheck(1,'bgmCheck')">xxxxx</button>
+				<button onclick="bgmDelect()">批量删除</button>
 			</div>
 		</div>
 		<div id="topicdiv" hidden=true>
 			<div id="topiclist">
-			    <input type="text" id="topicKey"  name="topicKey">
-			    <button onclick="topicSearch(1)">搜索</button>
+				<input type="text" id="topicKey" name="topicKey">
+				<button onclick="topicSearch(1)">搜索</button>
 				<div v-for="item in titems">
 					<!-- {{ item }} -->
 					<div>
@@ -95,12 +98,12 @@
 		</div>
 		<div id="videodiv" hidden=true>
 			<div id="videolist">
-		      	<input type="text" id="videoKey"  name="videoKey">
-                <button onclick="videoSearch(1)">搜索</button>
+				<input type="text" id="videoKey" name="videoKey">
+				<button onclick="videoSearch(1)">搜索</button>
 				<div v-for="item in vitems">
 					<!-- {{ item }} -->
 					<div>
-					    <video v-bind:src="'http://192.168.1.7:8081'+item.videoPath"></video>
+						<video v-bind:src="'http://192.168.1.7:8081'+item.videoPath"></video>
 						<ul>视频地址：{{ item.videoPath }}
 						</ul>
 						<ul>视频描述：{{ item.videoDesc }}
@@ -120,6 +123,7 @@
 				</div>
 				<button onclick="getVideoList()">获取视频数据</button>
 				<button onclick="getCheck(3,'videoCheck')">xxxxx</button>
+				<button onclick="videoSeal()">查封视频</button>
 			</div>
 		</div>
 		<div id="barragediv" hidden=true>
@@ -127,19 +131,21 @@
 				<div v-for="item in baitems">
 					<!-- {{ item }} -->
 					<div>
-						<ul>被举报视频id：{{ item.videoId }}
+					    <ul>弹幕内容：{{ item.comment }}
+                        </ul>
+						<ul>视频id：{{ item.videoId }}
 						</ul>
 						<ul>发布时间：{{ item.createTime }}
 						</ul>
-						<ul>举报内容：{{ item.comment }}
-                        </ul>
-                        <input name="barrageCheck" type="checkbox" v-bind:value="item.id">
+						
+						<input name="barrageCheck" type="checkbox" v-bind:value="item.id">
 						<ul>-----------------------------
 						</ul>
 					</div>
 				</div>
-				<button onclick="getBarrageList()">获取话题数据</button>
+				<button onclick="getBarrageList()">获取弹幕数据</button>
 				<button onclick="getCheck(4,'barrageCheck')">xxxxx</button>
+				<button onclick="barrageDelect()">批量删除</button>
 			</div>
 		</div>
 	</div>

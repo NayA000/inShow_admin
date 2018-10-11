@@ -29,6 +29,6 @@ public interface vedioService {
 	 * @param vid
 	 * @return
 	 */
-	public boolean sealVideo(String vid);
+	public boolean sealVideo(String[] vid);
 
 }

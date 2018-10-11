@@ -41,7 +41,7 @@ var userPage = 0;
 var bgmPage = 0;
 var topicPage = 0;
 var videoPage = 0;
-var barragesPage = 0;
+var barragePage = 0;
 
 function showDiv(flag) {
 	var i = 0;
@@ -71,6 +71,7 @@ function getUserList() {
 			ulist.$data.uitems = msg.data;
 		}
 	});
+	userPage+=1;
 }
 function getBgmList() {
 	console.log("点了一下");
@@ -115,7 +116,7 @@ function getVideoList() {
 function getBarrageList() {
 	console.log("点了一下");
 	$.ajax({
-		url : url + '/barrage/getAll?page=' + barragesPage,
+		url : url + '/barrage/getAll?page=' + barragePage,
 		type : 'GET',
 		// data: "page=0",
 		success : function(msg) {
@@ -123,7 +124,7 @@ function getBarrageList() {
 			balist.$data.baitems = msg.data;
 		}
 	});
-	barragesPage += 1;
+	barragePage += 1;
 }
 // ------------------------------------------------------------
 // day 2
@@ -160,7 +161,7 @@ function topicDelect(){
 }
 var topicSearchPage = 0;
 
-function topicSearch(newSearch){// 搜索案件使用topicSearch(1) 下一页使用topicSearch(2) 上一页使用topicSearch(0)
+function topicSearch(newSearch){// 搜索话题使用topicSearch(1) 下一页使用topicSearch(2) 上一页使用topicSearch(0)
 	console.log("----------");
 	if(newSearch===1) topicSearchPage=0;
 	var key = document.getElementsByName("topicKey")[0].value;
@@ -187,7 +188,7 @@ function videoDelect(){
 	getCheck(3,'videoCheck');
 	$.ajax({
 		//url : url + '/topic/delect' ,
-		url : url + '/video/delect?tid='+ check[3],
+		url : url + '/video/delect?vid='+ check[3],
 		type : 'GET',
 		success : function(msg) {
 			console.log(msg);
@@ -197,9 +198,23 @@ function videoDelect(){
 		}
 	});
 }
+function videoSeal(){
+	getCheck(3,'videoCheck');
+	$.ajax({
+		//url : url + '/topic/delect' ,
+		url : url + '/video/seal?vid='+ check[3],
+		type : 'GET',
+		success : function(msg) {
+			console.log(msg);
+			getVideoList();
+		}
+	});
+}
+
+
 var videoSearchPage = 0;
 
-function videoSearch(newSearch){// 搜索案件使用videoSearch(1) 下一页使用videoSearch(2) 上一页使用videoSearch(0)
+function videoSearch(newSearch){// 搜索视频使用videoSearch(1) 下一页使用videoSearch(2) 上一页使用videoSearch(0)
 	console.log("----------");
 	if(newSearch===1) videoSearchPage=0;
 	var key = document.getElementsByName("videoKey")[0].value;
@@ -219,6 +234,75 @@ function videoSearch(newSearch){// 搜索案件使用videoSearch(1) 下一页使
 	if(newSearch===0&&videoSearchPage>0) videoSearchPage-=1;
 	if(newSearch===2) videoSearchPage+=1;
 }
+//-------------------11111------------------------------------------
+//bgm   ==> delect   search    add
+function bgmDelect(){
+	getCheck(1,'bgmCheck');
+	$.ajax({
+		//url : url + '/topic/delect' ,
+		url : url + '/bgm/delect?bid='+ check[1],
+		type : 'GET',
+		success : function(msg) {
+			console.log(msg);
+			if(bgmPage>1)
+				bgmPage-=1;
+			getBgmList();
+		}
+	});
+}
+
+var videoSearchPage = 0;
+
+function bgmSearch(newSearch){// 搜索bgm使用bgmSearch(1) 下一页使用bgmSearch(2) 上一页使用bgmSearch(0)
+	bgmPage = 1;
+	console.log("----------");
+	if(newSearch===1) bgmSearchPage=0;
+	var key = document.getElementsByName("bgmKey")[0].value;
+	console.log("----------"+key+"--------------");
+	$.ajax({
+		url : url + '/bgm/search' ,
+		type : 'GET',
+		data: {
+			key: key,
+			page: bgmSearchPage
+		},
+		success : function(msg) {
+			console.log(msg);
+			blist.$data.bitems = msg.data;
+		}
+	});
+	if(newSearch===0&&bgmSearchPage>1) bgmSearchPage-=1;
+	if(newSearch===2) bgmSearchPage+=1;
+}
+
+function joinBgmUpload(){
+	//window.open(url+"/bgmUpload.html");
+	window.showModalDialog(url+"/bgmUpload.html",'','');
+}
+
+
+
+
+//---------------------------------------------------------------
+//barrage ==>   delect
+function barrageDelect(){
+	getCheck(4,'barrageCheck');
+	$.ajax({
+		//url : url + '/topic/delect' ,
+		url : url + '/barrage/delect?bid='+ check[4],
+		type : 'GET',
+		success : function(msg) {
+			console.log(msg);
+			if(barragePage>=1)
+				barragePage-=1;
+			getbarrageList();
+		}
+	});
+}
+
+
+
+
 
 
 

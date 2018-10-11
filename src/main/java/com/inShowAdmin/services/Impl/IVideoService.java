@@ -17,13 +17,15 @@ import com.inShowAdmin.services.vedioService;
 
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
+
 @Service
 public class IVideoService implements vedioService {
 	@Autowired
 	private VideosMapper vmapper;
+
 	@Override
 	public boolean delectVideo(String[] sid) {
-		for(String id:sid) {
+		for (String id : sid) {
 			Example e = new Example(Videos.class);
 			Criteria c = e.createCriteria();
 			c.andEqualTo("id", id);
@@ -40,7 +42,7 @@ public class IVideoService implements vedioService {
 	}
 
 	@Override
-	public List<Videos> findVideoByKey(String key , int page) throws ParseException {
+	public List<Videos> findVideoByKey(String key, int page) throws ParseException {
 		List<Videos> vl = new ArrayList<>();
 		try {
 			vl = new solrSearch().selectVideoByKey(key, page);
@@ -55,18 +57,19 @@ public class IVideoService implements vedioService {
 	}
 
 	@Override
-	public boolean sealVideo(String vid) {
-		Example e = new Example(Videos.class);
-		Criteria c = e.createCriteria();
-		c.andEqualTo("id", vid);
-		List<Videos> a = vmapper.selectByExample(e);
-		if(a!=null) {
-			Videos v = a.get(0);
-			v.setStatus(2);
-			vmapper.updateByPrimaryKey(v);
-			return true;
+	public boolean sealVideo(String[] vid) {
+		System.out.println("---------"+vid);
+		for (String id : vid) {
+			Example e = new Example(Videos.class);
+			Criteria c = e.createCriteria();
+			c.andEqualTo("id", id);
+			List<Videos> a = vmapper.selectByExample(e);
+			if (a != null) {
+				Videos v = a.get(0);
+				v.setStatus(2);
+				vmapper.updateByPrimaryKey(v);
+			}
 		}
-		return false;
+		return true;
 	}
-
 }

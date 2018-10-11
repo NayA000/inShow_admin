@@ -54,6 +54,7 @@ public class bgmController {
 	})
 	@GetMapping("/search")
 	public JSONResult Vsearch(String key,int page) throws SolrServerException, IOException {
+		System.out.println("----------"+key+"----------");
 		if(key==null) key="";
 		List<Bgm> list = bservice.findBgmByKey(key, page);
 		return JSONResult.ok(list);

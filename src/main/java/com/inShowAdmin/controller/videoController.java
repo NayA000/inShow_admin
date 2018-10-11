@@ -55,7 +55,7 @@ public class videoController {
 	@ApiImplicitParam(name="vid", value="视频id", required=true, 
 						dataType="String", paramType="query")
 	@GetMapping("/seal")
-	public JSONResult vseal(String vid) {
+	public JSONResult vseal(String[] vid) {
 		if(vservice.sealVideo(vid)) 
 			return JSONResult.ok();
 		return JSONResult.errorMsg("失败");
