@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>InShowVideo管理系统</title>
 </head>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -42,7 +42,9 @@
 						<input name="userCheck" type="checkbox" v-bind:value="item.id">
 					</div>
 				</div>
-				<button onclick="getUserList()">获取user数据</button>
+				<button onclick="getUserList_1()">上一页</button>
+				<button onclick="getUserList()">下一页</button>
+				
 				<button onclick="getCheck(0,'userCheck')">xxxxx</button>
 			</div>
 		</div>
@@ -65,7 +67,9 @@
 						</ul>
 					</div>
 				</div>
-				<button onclick="getBgmList()">获取bgm数据</button>
+				<button onclick="getBgmList_1()">上一页</button>
+				<button onclick="getBgmList()">下一页</button>
+				
 				<button onclick="joinBgmUpload()">上传bgm</button>
 				<button onclick="getCheck(1,'bgmCheck')">xxxxx</button>
 				<button onclick="bgmDelect()">批量删除</button>
@@ -91,7 +95,8 @@
 						</ul>
 					</div>
 				</div>
-				<button onclick="getTopicList()">获取话题数据</button>
+				<button onclick="getTopicList_1()">上一页</button>
+				<button onclick="getTopicList()">下一页</button>
 				<button onclick="getCheck(2,'topicCheck')">xxxxx</button>
 				<button onclick="topicDelect()">删除话题数据</button>
 			</div>
@@ -121,7 +126,8 @@
 						</ul>
 					</div>
 				</div>
-				<button onclick="getVideoList()">获取视频数据</button>
+				<button onclick="getVideoList_1()">上一页</button>
+				<button onclick="getVideoList()">下一页</button>
 				<button onclick="getCheck(3,'videoCheck')">xxxxx</button>
 				<button onclick="videoSeal()">查封视频</button>
 			</div>
@@ -143,7 +149,8 @@
 						</ul>
 					</div>
 				</div>
-				<button onclick="getBarrageList()">获取弹幕数据</button>
+				<button onclick="getBarrageList_1()">上一页</button>
+				<button onclick="getBarrageList()">下一页</button>
 				<button onclick="getCheck(4,'barrageCheck')">xxxxx</button>
 				<button onclick="barrageDelect()">批量删除</button>
 			</div>
