@@ -1,14 +1,21 @@
 package com.inShowAdmin.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
-@RequestMapping("/admin")
+@Controller
+@RequestMapping
 public class staticController {
-	@GetMapping("/login")
+	//@RequestMapping(value = "/inShowAdminLogin", method = RequestMethod.GET)
+	@GetMapping("/inShowAdminLogin")
 	public String login() {
 		return "login";
+	}
+	//@RequestMapping(value = "/inShowAdmin", method = RequestMethod.GET)  
+	@GetMapping("/inShowAdmin")
+	public String index() {
+		return "index";
 	}
 }
